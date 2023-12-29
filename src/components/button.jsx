@@ -7,6 +7,7 @@ export default function Button(props) {
       style={{
         backgroundColor: "#FFC73C",
         borderColor: "#FFC73C",
+        width: "15rem",
       }}
     >
       {label}
