@@ -1,87 +1,91 @@
 import { useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import "swiper/css";
-// import "swiper/css/bundle";
-import { Navigation, Pagination } from "swiper/modules";
+import { Container, Row, Col } from "react-bootstrap";
+import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import "@/styles/swiper.css";
 
-import galeri1 from "@/assets/img/galeri1.png";
-import galeri2 from "@/assets/img/galeri2.png";
-import galeri3 from "@/assets/img/galeri3.png";
-import galeri4 from "@/assets/img/galeri4.png";
+import galeri1 from "@/assets/img/gallery/galeri1.png";
+import galeri2 from "@/assets/img/gallery/galeri2.png";
+import galeri3 from "@/assets/img/gallery/galeri3.png";
+import galeri4 from "@/assets/img/gallery/galeri4.png";
 
-const SwiperGallery = () => {
+export default function SwiperGallery() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [selectedImages, setSelectedImages] = useState([]);
+  const [mainSwiper, setMainSwiper] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
-  const images = [
-    <img src={galeri1} alt="Galeri 1" />,
-    <img src={galeri2} alt="Galeri 2" />,
-    <img src={galeri3} alt="Galeri 3" />,
-    <img src={galeri4} alt="Galeri 4" />,
-  ];
+  const images = [galeri1, galeri2, galeri3, galeri4];
 
   const handleImageClick = (index) => {
-    const newSelectedImages = [...selectedImages];
-    const imageIndex = newSelectedImages.indexOf(index);
-
-    if (imageIndex === -1) {
-      newSelectedImages.push(index);
-    } else {
-      newSelectedImages.splice(imageIndex, 1);
+    if (mainSwiper && thumbsSwiper) {
+      mainSwiper.slideTo(index);
+      setSelectedImageIndex(index);
     }
-
-    setSelectedImages(newSelectedImages);
   };
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <Swiper
-            modules={[Navigation, Pagination]}
-            spaceBetween={10}
-            navigation
-            thumbs={{ swiper: thumbsSwiper }}
-            className="mySwiper2"
-          >
-            {images.map((image, index) => (
-              <SwiperSlide key={index}>
-                <img src={image} alt={`Slide ${index}`} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </Col>
-        <Col>
-          <Swiper
-            modules={[Navigation, Pagination]}
-            onSwiper={setThumbsSwiper}
-            spaceBetween={5}
-            slidesPerView={3}
-            freeMode={true}
-            watchSlidesVisibility
-            watchSlidesProgress
-            className="mySwiper"
-          >
-            {images.map((image, index) => (
-              <SwiperSlide key={index}>
-                <img
-                  src={image}
-                  alt={`Thumbnail ${index}`}
-                  onClick={() => handleImageClick(index)}
-                  style={{
-                    border: selectedImages.includes(index)
-                      ? "2px solid #007bff"
-                      : "2px solid #ccc",
-                  }}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </Col>
-      </Row>
-    </Container>
+    <div className="swiper-gallery">
+      <Container>
+        <Row>
+          <Col>
+            <h1
+              className="fw-bold"
+              style={{ marginBottom: "50px", marginTop: "-10rem" }}
+            >
+              GALERI SUDIRMAN RUN 2022
+            </h1>
+            <Swiper
+              style={{
+                "--swiper-navigation-color": "#fff",
+                "--swiper-pagination-color": "#fff",
+              }}
+              modules={[FreeMode, Navigation, Thumbs]}
+              loop={true}
+              spaceBetween={10}
+              navigation={true}
+              thumbs={thumbsSwiper ? { swiper: thumbsSwiper } : null}
+              className="mySwiper2"
+              onSwiper={setMainSwiper}
+            >
+              {images.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <img
+                    src={image}
+                    alt={`Slide ${index}`}
+                    onClick={() => handleImageClick(index)}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Col>
+          <Col className="pt-4">
+            <Swiper
+              onSwiper={setThumbsSwiper}
+              spaceBetween={10}
+              slidesPerView={4}
+              freeMode={true}
+              watchSlidesProgress={true}
+              modules={[FreeMode, Navigation, Thumbs]}
+              className="mySwiper"
+            >
+              {images.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <img
+                    src={image}
+                    alt={`Thumbnail ${index}`}
+                    style={{ opacity: selectedImageIndex === index ? 1 : 0.4 }}
+                    onClick={() => handleImageClick(index)}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
-};
-
-export default SwiperGallery;
+}
