@@ -5,8 +5,8 @@ import Header from "@/components/header";
 import Event from "@/components/event";
 import Artikel from "@/components/artikel";
 import Footer from "@/components/footer";
-import SwiperGallery from "@/components/SwiperGallery";
-import SwiperSponsor from "@/components/SwiperSponsor";
+import SwiperGallery from "@/components/swiperGallery";
+import SwiperSponsor from "@/components/swiperSponsor";
 
 export default function LandingPage() {
   return (
