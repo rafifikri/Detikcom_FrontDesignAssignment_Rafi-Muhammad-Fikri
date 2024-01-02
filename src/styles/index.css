@@ -1,3 +1,12 @@
+:root {
+  --primary-gradient: linear-gradient(249deg, #59ffb9 -31.85%, #326cff 101.31%);
+  --secondary-gradient: linear-gradient(
+    249deg,
+    #326cff -31.85%,
+    #59ffb9 101.31%
+  );
+}
+
 * {
   font-family: "Poppins", sans-serif;
 }
@@ -5,7 +14,7 @@
 .navbar {
   position: fixed;
   margin: 50px 15rem 0rem 15rem;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(20px);
   border-radius: 10rem;
   -webkit-border-radius: 10rem;
   -moz-border-radius: 10rem;
@@ -13,14 +22,18 @@
   -o-border-radius: 10rem;
 }
 
+.navbar a {
+  color: black;
+}
+
 .navbar-nav {
   gap: 5rem;
 }
 
 .navbar-nav .nav-item:hover {
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(25px);
   border-radius: 10rem;
-  transform: scale(1.1);
+  border: 1px #fff solid;
   padding: 0px 10px 0px 10px;
   -webkit-border-radius: 10rem;
   -moz-border-radius: 10rem;
@@ -29,7 +42,7 @@
 }
 
 .btn-registrasi {
-  background: linear-gradient(to right, #326cff, #59ffb9);
+  background: var(--primary-gradient);
   padding: 0px 25px 0px 25px;
   margin-left: 5rem;
   border-radius: 10rem;
@@ -40,7 +53,7 @@
 }
 
 .btn-registrasi:hover {
-  background: linear-gradient(to right, #59ffb9, #326cff);
+  background: var(--secondary-gradient);
   padding: 0px 25px 0px 25px;
   margin-left: 5rem;
   border-radius: 10rem;
@@ -56,29 +69,67 @@ header {
   background-size: 100% 100%;
 }
 
-header .text {
-  margin: 0rem 15rem 0rem 15rem;
-}
-
 .landingPage .header-box h1 {
   font-size: 120px;
   font-style: italic;
 }
 
-.landingPage .maps {
+.landingPage .section {
   margin-top: 900px;
 }
 
-.landingPage .maps .row:nth-child(1) {
+.landingPage .section .row:nth-child(1) {
   padding-top: 150px;
   padding-bottom: 100px;
 }
 
-.landingPage .maps .row:nth-child(1) .card {
-  background: linear-gradient(to right top, #326cff, #59ffb9) !important;
+.landingPage .section .row:nth-child(1) .card {
+  background: var(--primary-gradient) !important;
   border: none;
 }
 
-.landingPage .swiper .row:nth-child(1) {
-  background: linear-gradient(to right, #326cff, #59ffb9);
+.landingPage .section .row:nth-child(1) .card .card-title {
+  font-size: 40px;
+  font-style: italic;
+}
+
+.landingPage .swiper-sponsor .row:nth-child(1) {
+  background: var(--primary-gradient);
+}
+
+.artikel {
+  height: auto;
+  background: url("../assets/img/footer/bg-footer.jpg") no-repeat;
+  background-position: bottom;
+  background-color: white;
+  background-size: cover;
+  padding-bottom: 30rem;
+}
+
+.artikel .menu {
+  background: var(--primary-gradient);
+  border-radius: 10rem;
+  gap: 4rem;
+  width: 22rem;
+  -webkit-border-radius: 10rem;
+  -moz-border-radius: 10rem;
+  -ms-border-radius: 10rem;
+  -o-border-radius: 10rem;
+}
+
+.artikel-image {
+  transition: transform 0.3s;
+}
+
+.artikel-title {
+  color: black;
+  transition: color 0.3s;
+}
+
+.artikel-col:hover .artikel-image {
+  transform: scale(1.1);
+}
+
+.artikel-col:hover .artikel-title {
+  color: orange;
 }

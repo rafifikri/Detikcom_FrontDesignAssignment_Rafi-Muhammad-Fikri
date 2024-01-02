@@ -1,6 +1,6 @@
 import { Navbar, Container, Nav, Col, Row } from "react-bootstrap";
 
-import brand from "@/assets/img/navbar-brand.png";
+import brand from "@/assets/img/navbar/navbar-brand.png";
 
 export default function NavbarComponent() {
   const menuItems = [
